@@ -16,9 +16,9 @@ export function UrlTool() {
   const [output, setOutput] = useState<string>('')
   const [current, setCurrent] = useState<string>('encode')
 
-  const handleEncode = () => {
+  function handleEncode(str: string) {
     try {
-      const lines = input.split('\n')
+      const lines = str.split('\n')
       const encodedLines = lines.map((line) => encodeURIComponent(line))
       const encodedString = encodedLines.join('\n')
       setOutput(encodedString)
@@ -27,9 +27,9 @@ export function UrlTool() {
     }
   }
 
-  const handleDecode = () => {
+  function handleDecode(str: string) {
     try {
-      const lines = input.split('\n')
+      const lines = str.split('\n')
       const decodedLines = lines.map((line) => decodeURIComponent(line))
       const decodedString = decodedLines.join('\n')
       setOutput(decodedString)
@@ -41,9 +41,19 @@ export function UrlTool() {
   function handleTabChange(value: string) {
     setCurrent(value)
     if (value === 'encode') {
-      handleEncode()
+      handleEncode(input)
     } else {
-      handleDecode()
+      handleDecode(input)
+    }
+  }
+
+  function handleInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const value = e.target.value
+    setInput(value)
+    if (current === 'encode') {
+      handleEncode(value)
+    } else {
+      handleDecode(value)
     }
   }
 
@@ -70,7 +80,7 @@ export function UrlTool() {
           <Textarea
             placeholder={`Enter text to ${current}`}
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={handleInputChange}
           />
 
           <Textarea placeholder="Output" value={output} readOnly />
