@@ -1,8 +1,7 @@
 import { EpochConverter } from '@/components/epoch-converter'
 import { UrlTool } from '@/components/url-tool'
 import { PaceConverter } from '@/components/pace-converter'
-import { CurrencyConverter } from '@/components/currency-converter'
-import { ShoeSizeConverter } from '@/components/shoe-size-converter'
+import { BillsDivider } from '@/components/bills-divider'
 
 export default function DevDashboard() {
   return (
@@ -15,8 +14,7 @@ export default function DevDashboard() {
         <EpochConverter />
         <UrlTool />
         <PaceConverter />
-        {/* <CurrencyConverter />
-        <ShoeSizeConverter /> */}
+        <BillsDivider />
       </div>
     </div>
   )
