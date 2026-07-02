@@ -1,24 +1,15 @@
-import type { Metadata } from 'next'
-import { Inter, Roboto_Mono } from 'next/font/google'
-import './globals.css'
+import { Geist, Geist_Mono, Inter } from "next/font/google"
 
-const sans = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-sans',
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'})
+
+const fontMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
 })
-
-export const mono = Roboto_Mono({
-  weight: ['400'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-mono',
-})
-
-export const metadata: Metadata = {
-  title: 'Devtools',
-  description: 'Ekaliacid Devtools',
-}
 
 export default function RootLayout({
   children,
@@ -26,8 +17,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
-      <body className="isolate">{children}</body>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+    >
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   )
 }
