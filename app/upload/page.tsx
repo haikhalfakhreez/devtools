@@ -1,4 +1,6 @@
+import Link from "next/link"
 import { CategoryCard } from "@/components/category-card"
+import { Button } from "@/components/ui/button"
 import { CATEGORY_METADATA } from "@/lib/constants"
 
 export default function UploadHubPage() {
@@ -10,6 +12,9 @@ export default function UploadHubPage() {
           <CategoryCard key={slug} label={meta.label} icon={meta.icon} slug={slug} />
         ))}
       </div>
+      <Link href="/email" className="w-full max-w-sm">
+        <Button className="w-full">Send Miyu email</Button>
+      </Link>
     </div>
   )
 }

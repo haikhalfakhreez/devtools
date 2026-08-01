@@ -9,7 +9,7 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       accessType: "offline",
       prompt: "consent",
-      scope: ["https://www.googleapis.com/auth/drive"],
+      scope: ["https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/gmail.send"],
     },
   },
   account: {
