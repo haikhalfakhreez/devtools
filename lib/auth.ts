@@ -1,5 +1,8 @@
 import { betterAuth } from "better-auth"
 
+const ONE_DAY_SECONDS = 60 * 60 * 24
+const SESSION_LIFETIME_SECONDS = 60 * ONE_DAY_SECONDS
+
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: process.env.BETTER_AUTH_URL,
@@ -20,10 +23,11 @@ export const auth = betterAuth({
     storeAccountCookie: true,
   },
   session: {
+    expiresIn: SESSION_LIFETIME_SECONDS,
     cookieCache: {
       enabled: true,
       strategy: "jwe",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: SESSION_LIFETIME_SECONDS,
     },
   },
 })
