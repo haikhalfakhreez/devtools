@@ -22,7 +22,9 @@ interface PreviewResponse {
 }
 
 export function EmailPageClient() {
-  const [preview, setPreview] = useState<PreviewResponse["preview"] | null>(null)
+  const [preview, setPreview] = useState<PreviewResponse["preview"] | null>(
+    null
+  )
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -85,13 +87,18 @@ export function EmailPageClient() {
     return (
       <div className="mx-auto flex max-w-xl flex-col gap-4 p-6">
         <div className="flex items-center gap-3">
-          <Link href="/upload" className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            href="/upload"
+            className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ArrowLeft size={16} />
             Back
           </Link>
           <h1 className="text-xl font-medium">Miyu email</h1>
         </div>
-        <p className="text-sm text-muted-foreground">Checking the current month receipts…</p>
+        <p className="text-sm text-muted-foreground">
+          Checking the current month receipts…
+        </p>
       </div>
     )
   }
@@ -99,7 +106,10 @@ export function EmailPageClient() {
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-6 p-6">
       <div className="flex items-center gap-3">
-        <Link href="/upload" className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+        <Link
+          href="/upload"
+          className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+        >
           <ArrowLeft size={16} />
           Back
         </Link>
@@ -113,8 +123,13 @@ export function EmailPageClient() {
           disabled={!preview?.isReady}
           className={`w-full rounded-md border p-4 text-left transition ${preview?.isReady ? "border-primary/40 bg-muted/40 hover:bg-muted" : "cursor-not-allowed border-border bg-muted/50 text-muted-foreground"}`}
         >
-          <div className="text-sm font-medium">Send Miyu email for {preview?.monthName ?? "this month"} {preview?.year ?? ""}</div>
-          <div className="mt-1 text-xs text-muted-foreground">{preview?.subject}</div>
+          <div className="text-sm font-medium">
+            Send Miyu email for {preview?.monthName ?? "this month"}{" "}
+            {preview?.year ?? ""}
+          </div>
+          <div className="mt-1 text-xs text-muted-foreground">
+            {preview?.subject}
+          </div>
         </button>
 
         {preview && !preview.isReady && (
@@ -127,13 +142,16 @@ export function EmailPageClient() {
           <h2 className="text-sm font-medium">Review before sending</h2>
           <div className="mt-3 space-y-2 text-sm text-muted-foreground">
             <p>
-              <span className="font-medium text-foreground">To:</span> {preview.recipients.join(", ")}
+              <span className="font-medium text-foreground">To:</span>{" "}
+              {preview.recipients.join(", ")}
             </p>
             <p>
-              <span className="font-medium text-foreground">Subject:</span> {preview.subject}
+              <span className="font-medium text-foreground">Subject:</span>{" "}
+              {preview.subject}
             </p>
             <p>
-              <span className="font-medium text-foreground">Attachments:</span> {preview.expectedFiles.map((file) => file.title).join(", ")}
+              <span className="font-medium text-foreground">Attachments:</span>{" "}
+              {preview.expectedFiles.map((file) => file.title).join(", ")}
             </p>
           </div>
           <Button className="mt-4" onClick={handleSubmit} disabled={submitting}>

@@ -9,7 +9,12 @@ export default function UploadHubPage() {
       <h1 className="mb-4 text-2xl font-medium">Upload Receipts</h1>
       <div className="flex w-full max-w-sm flex-col items-center gap-4">
         {Object.entries(CATEGORY_METADATA).map(([slug, meta]) => (
-          <CategoryCard key={slug} label={meta.label} icon={meta.icon} slug={slug} />
+          <CategoryCard
+            key={slug}
+            label={meta.label}
+            icon={meta.icon}
+            slug={slug}
+          />
         ))}
       </div>
       <Link href="/email" className="w-full max-w-sm">

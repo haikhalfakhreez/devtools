@@ -12,11 +12,17 @@ export async function GET(request: Request) {
     })
 
     if (!session) {
-      return NextResponse.json({ success: false, error: "Not authenticated" }, { status: 401 })
+      return NextResponse.json(
+        { success: false, error: "Not authenticated" },
+        { status: 401 }
+      )
     }
 
     if (session.user.email !== process.env.ALLOWED_GOOGLE_EMAIL) {
-      return NextResponse.json({ success: false, error: "Unauthorized email" }, { status: 403 })
+      return NextResponse.json(
+        { success: false, error: "Unauthorized email" },
+        { status: 403 }
+      )
     }
 
     const { accessToken } = await getValidAccessToken(request.headers)
@@ -24,7 +30,11 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ success: true, preview })
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Internal server error"
-    return NextResponse.json({ success: false, error: message }, { status: 500 })
+    const message =
+      error instanceof Error ? error.message : "Internal server error"
+    return NextResponse.json(
+      { success: false, error: message },
+      { status: 500 }
+    )
   }
 }
